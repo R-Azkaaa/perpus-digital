@@ -42,10 +42,16 @@
                 <select name="rack_id" class="form-control">
                     <option value="">-- Pilih Rak --</option>
                     @foreach ($racks as $r)
-                        <option value="{{ $r->id }}">{{ $r->name }}</option>
+                        <option value="{{ $r->id }}">{{ $r->code }} - {{ $r->location }}</option>
                     @endforeach
                 </select>
             </div>
+
+            <div class="mb-3">
+                <label>Stok</label>
+                <input type="number" name="stock" class="form-control" value="0" required>
+            </div>
+
 
             <button type="submit" class="btn btn-success">Simpan</button>
             <a href="{{ route('books.index') }}" class="btn btn-secondary">Kembali</a>

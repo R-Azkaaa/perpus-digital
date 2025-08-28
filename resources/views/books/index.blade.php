@@ -24,9 +24,10 @@
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->author }}</td>
                         <td>{{ $book->publisher }}</td>
-                        <td>{{ $book->year }}</td>
+                        <td>{{ $book->year_published }}</td>
                         <td>{{ $book->category->name ?? '-' }}</td>
-                        <td>{{ $book->rack->name ?? '-' }}</td>
+                        <td>{{ $book->rack->code ?? '-' }} ({{ $book->rack->location ?? '-' }})</td>
+
                         <td>
                             <a href="{{ route('books.show', $book->id) }}" class="btn btn-info btn-sm">Detail</a>
                             <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning btn-sm">Edit</a>

@@ -14,9 +14,10 @@ class Book extends Model
         'title',
         'author',
         'publisher',
-        'year',
+        'year_published',
         'category_id',
         'rack_id',
+        'stock', // tambahin kalau mau stok ikut diinput
     ];
 
     // relasi ke kategori

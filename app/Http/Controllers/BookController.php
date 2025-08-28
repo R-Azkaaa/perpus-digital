@@ -25,19 +25,34 @@ class BookController extends Controller
     }
 
     // 💾 Simpan buku baru
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title'       => 'required|string|max:255',
-            'author'      => 'required|string|max:255',
-            'category_id' => 'nullable|exists:categories,id',
-            'rack_id'     => 'nullable|exists:racks,id',
-            'stock'       => 'required|integer|min:0',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+        'title'       => 'required|string|max:255',
+        'author'      => 'required|string|max:255',
+        'publisher'   => 'required|string|max:255',
+        'year_published'        => 'required|integer',
+        'category_id' => 'nullable|exists:categories,id',
+        'rack_id'     => 'nullable|exists:racks,id',
+        'stock'       => 'required|integer|min:0',
+    ]);
 
-        Book::create($request->all());
-        return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan!');
-    }
+Book::create([
+    'title' => $request->title,
+    'author' => $request->author,
+    'year_published' => $request->year_published, // ganti ke year_published
+    'publisher' => $request->publisher,
+    'isbn' => $request->isbn,
+    'category_id' => $request->category_id,
+    'rack_id' => $request->rack_id,
+    'stock' => $request->stock,
+    'description' => $request->description,
+    'cover_path' => $path ?? null,
+]);
+
+
+    return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan!');
+}
 
     // 👁️ Detail buku
     public function show(Book $book)
